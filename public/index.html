@@ -43,7 +43,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="js/index.js"></script>
-  <script src="../public/js/idb.js"></script>
+  <script src="js/idb.js"></script>
 </body>
 <script>
 (function() {
@@ -52,7 +52,7 @@ if('serviceWorker' in navigator) {
               .register('./service-worker.js')
               .then(() => console.log('Service Worker Workin It!'))
               .catch(error =>
-                  console.log('Service Worker out of a job:', error)
+                  console.log('Service Worker is out of a job:', error)
               );
                 }
               })
