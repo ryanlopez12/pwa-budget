@@ -1,6 +1,6 @@
 {
-    "name": "Budget-Tracker",
-      "short_name": "Budget-Tracker",
+    "name": "PWA-BudgetTracker-",
+      "short_name": "PWA",
       "icons": [
         {
           "src": "icons/icon-512x512.png",
