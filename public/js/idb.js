@@ -1,9 +1,12 @@
+// create variable to hold db connection
 let db;
-
+// establish a connection to IndexedDB database called 'PWA-budgetTracker-' and set it to version 1
 const request = indexedDB.open("PWA-budgetTracker-", 1);
 
 request.onupgradeneeded = function (event) {
+  //save a reference to the database
   const db = event.target.result;
+  //create an object (transaction) 
   db.createObjectStore("new_transaction", { autoIncrement: true });
 };
 
