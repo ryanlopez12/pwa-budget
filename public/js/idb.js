@@ -13,20 +13,21 @@ request.onupgradeneeded = function (event) {
 request.onsuccess = function (event) {
   db = event.target.result;
   if (navigator.onLine) {
+    uploadTransaction();
   }
 };
 
 request.onerror = function (event) {
   console.log(event.target.errorCode);
 };
-
+//save local transaction
 function saveRecord(record) {
   const transaction = db.transaction(["new_transaction"], "readwrite");
   const budgetObjectStore = transaction.objectStore("new_transaction");
 
   budgetObjectStore.add(record);
 }
-
+//upload
 function uploadTransaction() {
   const transaction = db.transaction(["new_transaction"], "readwrite");
   const budgetObjectStore = transaction.objectStore("new_transaction");

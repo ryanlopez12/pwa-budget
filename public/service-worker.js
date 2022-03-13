@@ -19,8 +19,8 @@ const FILES_TO_CACHE = [
 ];
 
 
-self.addEventListener('install', function (e) {
-  e.waitUntil(
+self.addEventListener('install', function (evnty) {
+    evnty.waitUntil(
       caches.open(CACHE_NAME).then(function (cache) {
           console.log("Your files were successfull!");
           return cache.addAll(FILES_TO_CACHE)
@@ -28,8 +28,8 @@ self.addEventListener('install', function (e) {
   )
 });
 
-self.addEventListener('activate', function (e) {
-  e.waitUntil(
+self.addEventListener('activate', function (evnty) {
+    evnty.waitUntil(
       caches.keys().then(function (keyList) {
           let cacheKeeplist = keyList.filter(function (key) {
               return key.indexOf(APP_PREFIX);
@@ -46,16 +46,16 @@ self.addEventListener('activate', function (e) {
   )
 });
 
-self.addEventListener('fetch', function (e) {
-  console.log('fetch request : ' + e.request.url);
-  e.respondWith(
+self.addEventListener('fetch', function (evnty) {
+  console.log('fetch request : ' + evnty.request.url);
+  evnty.respondWith(
       caches.match(e.request).then(function (request) {
           if (request) { 
-              console.log('Cache sending : ' + e.request.url);
+              console.log('Cache sending : ' + evnty.request.url);
               return request
           } else {      
-              console.log('No cache is established : ' + e.request.url);
-              return fetch(e.request)
+              console.log('No cache is established : ' + evnty.request.url);
+              return fetch(evnty.request)
           }
 
       })
